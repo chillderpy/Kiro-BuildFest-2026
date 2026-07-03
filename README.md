@@ -28,8 +28,6 @@ Kiro's persistent context also meant real iteration got recorded, not lost: when
 > future results. **Do your own homework and consult a licensed professional
 > before making any investment decision.**
 >
-> There is also **no authentication** — run it locally, do not expose it to
-> the internet.
 
 ---
 
