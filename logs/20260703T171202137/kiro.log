@@ -34,3 +34,4 @@
 {"timestamp":"2026-07-03T17:12:05.351Z","level":"info","message":"[KiroAgent] ACP session/load complete sessionId=sess_74c49c9d-10ac-415d-b06e-0cfac117e631 messages=0 at=2026-07-03T17:12:05.351Z"}
 {"timestamp":"2026-07-03T17:12:05.748Z","level":"info","message":"[RemoteToolsDiscovery] Discovered 1 Remote tools"}
 {"timestamp":"2026-07-03T17:12:06.566Z","level":"info","message":"[ACPModelConfigProvider] Loaded 15 models"}
+{"timestamp":"2026-07-03T17:22:03.334Z","level":"info","message":"[ACPModelConfigProvider] Loaded 15 models"}

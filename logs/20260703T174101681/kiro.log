@@ -1,0 +1,20 @@
+{"timestamp":"2026-07-03T17:41:01.878Z","level":"info","message":"File logging initialized at C:\\Users\\Admin\\.kiro\\logs\\20260703T174101681"}
+{"timestamp":"2026-07-03T17:41:01.878Z","level":"info","message":"Initializing persistence at C:\\Users\\Admin\\.kiro\\sessions"}
+{"timestamp":"2026-07-03T17:41:01.920Z","level":"info","message":"[SessionPersistence] Initialized persistence at C:\\Users\\Admin\\.kiro\\sessions"}
+{"timestamp":"2026-07-03T17:41:01.921Z","level":"info","message":"Persistence initialized"}
+{"timestamp":"2026-07-03T17:41:01.927Z","level":"info","message":"[AgentTelemetry] Initialized {\"endpoint\":\"https://prod.us-east-1.telemetry.desktop.kiro.dev\",\"serviceName\":\"kiroAgent\"}"}
+{"timestamp":"2026-07-03T17:41:01.927Z","level":"info","message":"[KiroAgent] Remote MCP client initialized"}
+{"timestamp":"2026-07-03T17:41:01.927Z","level":"info","message":"[KiroAgent] Creating remote tools discovery (executionEnvironment=local, includeHidden=false)"}
+{"timestamp":"2026-07-03T17:41:01.930Z","level":"info","message":"[KiroAgent] Cleared stale task execution statuses"}
+{"timestamp":"2026-07-03T17:41:01.930Z","level":"info","message":"[KiroAgent] Platform initialized"}
+{"timestamp":"2026-07-03T17:41:01.931Z","level":"info","message":"[KiroAgent] Resolved capabilities: {\"fsReadTextFile\":true,\"fsWriteTextFile\":true,\"kiroFsReadFile\":true,\"kiroFsWriteFile\":true,\"kiroFsStat\":true,\"kiroFsReadDirectory\":true,\"kiroFsDelete\":true,\"terminal\":true,\"secretStorage\":true,\"openExternalUrl\":true,\"knowledge\":false,\"infrastructureSafety\":true}"}
+{"timestamp":"2026-07-03T17:41:01.931Z","level":"info","message":"[RemoteToolsDiscovery] Fetching available Remote tools"}
+{"timestamp":"2026-07-03T17:41:01.931Z","level":"info","message":"[KiroAgent] Client supports ACP secret storage"}
+{"timestamp":"2026-07-03T17:41:01.931Z","level":"info","message":"[KiroAgent] Client supports ACP openExternalUrl"}
+{"timestamp":"2026-07-03T17:41:01.931Z","level":"info","message":"[KiroAgent] Stored clientInfo.name: kiro-ide"}
+{"timestamp":"2026-07-03T17:41:01.932Z","level":"info","message":"[KiroAgent] v2 hooks cache initialized (hooks load at session start)"}
+{"timestamp":"2026-07-03T17:41:01.932Z","level":"info","message":"Handshake: returning logging config with 3 channels at C:\\Users\\Admin\\.kiro\\logs\\20260703T174101681"}
+{"timestamp":"2026-07-03T17:41:01.991Z","level":"info","message":"[KiroAgent] v2 hooks loaded 0 standalone hooks from .kiro/hooks/"}
+{"timestamp":"2026-07-03T17:41:02.080Z","level":"info","message":"[KiroAgent] v2 hooks loaded 0 Open Plugin hooks"}
+{"timestamp":"2026-07-03T17:41:02.081Z","level":"info","message":"fs.hooksReload.ok {\"system\":\"fs\",\"durationMs\":111}"}
+{"timestamp":"2026-07-03T17:41:02.174Z","level":"info","message":"[KiroAgent] _kiro/mcp/toggle: enabled=true"}
