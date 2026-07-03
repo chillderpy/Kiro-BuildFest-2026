@@ -1,4 +1,4 @@
-# Stock Signal Dashboard
+# Semaphore
 
 A personal, self-hosted dashboard that pulls historical price data and
 fundamentals for a watchlist of stocks, blends a handful of well-known
