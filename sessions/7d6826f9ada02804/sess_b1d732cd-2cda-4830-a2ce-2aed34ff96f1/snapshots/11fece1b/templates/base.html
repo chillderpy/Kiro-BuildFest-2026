@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }} - Stock Signal Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <h1><a href="{{ url_for('index') }}">Stock Signal Dashboard</a></h1>
+    <nav>
+      <a href="{{ url_for('index') }}">Quick List</a>
+      {% for s in sectors %}
+        <a href="{{ url_for('sector_view', sector=s) }}">{{ s }}</a>
+      {% endfor %}
+    </nav>
+  </header>
+
+  <div class="disclaimer" role="note">{{ disclaimer }}</div>
+
+  <main>
+    <h2>{{ title }}</h2>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <p>Personal, research-only tool. No trading, no broker integration.</p>
+  </footer>
+</body>
+</html>

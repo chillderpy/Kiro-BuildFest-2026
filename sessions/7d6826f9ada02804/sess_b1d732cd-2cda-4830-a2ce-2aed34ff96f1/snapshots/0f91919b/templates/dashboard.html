@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stock Signal Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Stock Signal Dashboard</h1>
+  </header>
+
+  <div class="disclaimer" role="note">{{ disclaimer }}</div>
+
+  <main>
+    <section id="signals-section">
+      <div class="section-head">
+        <h2>Signals</h2>
+        <button id="refresh" type="button">Refresh</button>
+      </div>
+      <p class="hint">Strongest signals first. Click a ticker for the full
+        breakdown and chart.</p>
+      <div id="signals-status" class="status"></div>
+      <table class="signals">
+        <thead>
+          <tr>
+            <th>Ticker</th><th>Sector</th><th>Signal</th>
+            <th>Score</th><th>Confidence</th><th>Close</th>
+          </tr>
+        </thead>
+        <tbody id="signals-body"></tbody>
+      </table>
+    </section>
+
+    <section id="detail-section" hidden>
+      <div class="section-head">
+        <h2 id="detail-title">Ticker</h2>
+        <div class="period-buttons" id="period-buttons">
+          {% for p in periods %}
+          <button type="button" data-period="{{ p }}"
+                  class="{{ 'active' if p == default_period else '' }}">{{ p }}</button>
+          {% endfor %}
+        </div>
+      </div>
+      <div id="detail-status" class="status"></div>
+
+      <div class="detail-grid">
+        <div class="chart-wrap">
+          <canvas id="price-chart" height="220"></canvas>
+        </div>
+        <div class="breakdown-wrap">
+          <p id="detail-summary"></p>
+          <table class="stats breakdown">
+            <thead>
+              <tr><th>Indicator</th><th>Score</th><th>Weight</th></tr>
+            </thead>
+            <tbody id="breakdown-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Personal, research-only tool. No trading, no broker, no login.</p>
+  </footer>
+
+  <script>
+    window.DEFAULT_PERIOD = "{{ default_period }}";
+  </script>
+  <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>

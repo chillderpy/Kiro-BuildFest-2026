@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stock Signal Dashboard</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <h1>Stock Signal Dashboard</h1>
+    </div>
+    <div class="topbar-actions">
+      <span class="last-updated">
+        Last updated <time id="last-updated">—</time>
+      </span>
+      <button id="refresh" class="btn" type="button">
+        <span class="btn-icon" aria-hidden="true">&#8635;</span> Refresh
+      </button>
+    </div>
+  </header>
+
+  <!-- Nav tabs -->
+  <nav class="tabs" id="tabs" aria-label="Watchlist groups"></nav>
+
+  <main>
+    <div class="status" id="signals-status" role="status"></div>
+
+    <!-- Card grid: one card per stock -->
+    <section class="card-grid" id="card-grid" aria-label="Signals"></section>
+
+    <!-- Detail panel: hidden until a card is clicked -->
+    <section class="detail" id="detail" hidden aria-live="polite">
+      <div class="detail-head">
+        <div class="detail-id">
+          <h2 id="detail-ticker">—</h2>
+          <span class="muted" id="detail-name"></span>
+        </div>
+        <div class="detail-signal">
+          <span class="badge" id="detail-badge">—</span>
+          <span class="detail-score" id="detail-score"></span>
+          <span class="muted" id="detail-confidence"></span>
+        </div>
+        <button class="btn ghost" id="detail-close" type="button" aria-label="Close">&times;</button>
+      </div>
+
+      <!-- Timeframe switcher -->
+      <div class="timeframe" id="timeframe" role="group" aria-label="Chart timeframe">
+        {% for p in periods %}
+        <button type="button" class="tf-btn {{ 'active' if p == default_period else '' }}"
+                data-period="{{ p }}">{{ p | upper }}</button>
+        {% endfor %}
+      </div>
+
+      <div class="detail-status status" id="detail-status"></div>
+
+      <div class="detail-grid">
+        <!-- Chart -->
+        <section class="panel chart-panel">
+          <h3>Price &amp; moving averages</h3>
+          <div class="chart-wrap"><canvas id="price-chart" height="260"></canvas></div>
+        </section>
+
+        <!-- Indicator breakdown -->
+        <section class="panel">
+          <h3>Signal breakdown</h3>
+          <p class="panel-hint">Each factor scores &minus;1 (bearish) to +1 (bullish).</p>
+          <table class="kv">
+            <thead>
+              <tr><th>Indicator</th><th>Score</th><th>Weight</th></tr>
+            </thead>
+            <tbody id="breakdown-body"></tbody>
+          </table>
+        </section>
+
+        <!-- Fundamentals -->
+        <section class="panel">
+          <h3>Fundamentals</h3>
+          <table class="kv">
+            <tbody id="fundamentals-body"></tbody>
+          </table>
+        </section>
+
+        <!-- Backtest -->
+        <section class="panel backtest-panel">
+          <h3>Backtest <span class="muted">&mdash; 1-year, simulated</span></h3>
+          <div id="backtest-body"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer disclaimer -->
+  <footer class="footer">
+    <p>{{ disclaimer }}</p>
+  </footer>
+
+  <script>
+    window.PERIODS = {{ periods | tojson }};
+    window.DEFAULT_PERIOD = {{ default_period | tojson }};
+  </script>
+  <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>

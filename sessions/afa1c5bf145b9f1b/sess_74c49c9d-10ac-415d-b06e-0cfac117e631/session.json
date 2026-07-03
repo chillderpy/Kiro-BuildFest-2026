@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0.0",
+  "dataModelVersion": 1,
+  "id": "sess_74c49c9d-10ac-415d-b06e-0cfac117e631",
+  "title": "New Session",
+  "agentMode": "vibe",
+  "workspacePaths": [
+    "c:\\Users\\Admin\\.kiro"
+  ],
+  "createdAt": "2026-07-03T17:07:30.941Z",
+  "lastModifiedAt": "2026-07-03T17:07:31.111Z",
+  "semanticReviewEnabled": true,
+  "ftaEnabled": false,
+  "specPlanEnabled": false,
+  "specWorkflow": "quick",
+  "specSkipClarificationEnabled": true,
+  "modelId": "claude-opus-4.8",
+  "autopilot": true
+}

@@ -1,0 +1,6 @@
+NVDA: score=-0.3558 label=SELL confidence=0.571
+    breakdown={'macd': -1.0, 'sma': -1.0, 'ema': -1.0, 'rsi': 0.4421, 'bollinger': 0.6534, 'pe': -0.3224, 'earnings_growth': 1.0}
+AAPL: score=0.09 label=HOLD confidence=0.5
+    breakdown={'macd': 0.0, 'sma': 1.0, 'ema': 0.3333, 'rsi': -0.5131, 'bollinger': -0.8102, 'pe': -0.8213, 'earnings_growth': 1.0}
+MSFT: score=0.131 label=HOLD confidence=0.667
+    breakdown={'macd': 0.0, 'sma': -0.3333, 'ema': 0.3333, 'rsi': 0.0099, 'bollinger': -0.0955, 'pe': 0.1162, 'earnings_growth': 1.0}

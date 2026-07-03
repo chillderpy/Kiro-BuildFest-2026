@@ -1,0 +1,7 @@
+# Pinned exact versions - personal, research-only stock signal dashboard.
+# Regenerate with: pip freeze
+flask==3.1.3
+yfinance==1.5.1
+pandas==3.0.3
+numpy==2.5.0
+pytest==9.1.1

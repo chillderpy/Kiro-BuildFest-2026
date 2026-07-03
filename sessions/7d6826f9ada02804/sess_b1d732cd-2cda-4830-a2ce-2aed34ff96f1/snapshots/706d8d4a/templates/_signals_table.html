@@ -1,0 +1,28 @@
+{% macro signals_table(signals) %}
+<table class="signals">
+  <thead>
+    <tr>
+      <th>Ticker</th>
+      <th>Sector</th>
+      <th>Signal</th>
+      <th>Score</th>
+      <th>Close</th>
+      <th>RSI</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in signals %}
+    <tr>
+      <td class="ticker">{{ row.ticker }}</td>
+      <td>{{ row.sector }}</td>
+      <td><span class="badge badge-{{ row.label|lower }}">{{ row.label }}</span></td>
+      <td>{{ '%.1f'|format(row.score) if row.score is not none else '-' }}</td>
+      <td>{{ '%.2f'|format(row.close) if row.close is not none else '-' }}</td>
+      <td>{{ '%.1f'|format(row.rsi) if row.rsi is not none else '-' }}</td>
+      <td><a href="{{ url_for('backtest_view', ticker=row.ticker) }}">backtest</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endmacro %}

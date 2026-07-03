@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% from "_signals_table.html" import signals_table %}
+
+{% block content %}
+  <p class="lead">Signals for every ticker in the <strong>{{ sector }}</strong> sector.</p>
+  {{ signals_table(signals) }}
+  <p><a href="{{ url_for('index') }}">&larr; Back to quick list</a></p>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% from "_signals_table.html" import signals_table %}
+
+{% block content %}
+  <p class="lead">
+    Active quick list ({{ quick_list|join(', ') }}) - a small set kept short to
+    avoid hammering the data provider on the first run.
+  </p>
+
+  {{ signals_table(signals) }}
+
+  <p class="hint">
+    Signal is a weighted blend of MACD, moving averages, RSI, and Bollinger
+    Bands on a 0-100 scale (BUY &ge; {{ 65 }}, SELL &le; {{ 35 }}).
+    Browse a full sector using the navigation above.
+  </p>
+{% endblock %}

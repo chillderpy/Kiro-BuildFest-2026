@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% from "_signals_table.html" import signals_table %}
+
+{% block content %}
+  <p class="lead">
+    Active quick list ({{ quick_list|join(', ') }}) - a small set kept short to
+    avoid hammering the data provider on the first run.
+  </p>
+
+  {{ signals_table(signals) }}
+
+  <p class="hint">
+    Score is a weighted blend of MACD, moving averages, RSI, Bollinger Bands,
+    P/E, and earnings growth on a -1..+1 scale
+    (BUY &ge; {{ '%+.2f'|format(buy_threshold) }},
+    SELL &le; {{ '%+.2f'|format(sell_threshold) }}). Confidence shows how many
+    of the active indicators agree with the call. Open a ticker to see the full
+    per-indicator breakdown. Browse a full sector using the navigation above.
+  </p>
+{% endblock %}

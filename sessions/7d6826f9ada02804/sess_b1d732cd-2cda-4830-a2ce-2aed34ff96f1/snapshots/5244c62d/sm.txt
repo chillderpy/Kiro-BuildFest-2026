@@ -1,0 +1,6 @@
+GET /            -> 200
+GET /sector/tech  -> 200
+GET /backtest/NVDA -> 200
+GET bad sector   -> 404
+Quick-list tickers on index: {'NVDA': 'shown', 'AAPL': 'shown', 'MSFT': 'shown'}
+SMOKE RESULT: PASS

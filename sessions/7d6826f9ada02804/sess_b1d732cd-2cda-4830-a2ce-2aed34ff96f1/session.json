@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "dataModelVersion": 1,
+  "id": "sess_b1d732cd-2cda-4830-a2ce-2aed34ff96f1",
+  "title": "Stock Signal Dashboard built",
+  "agentMode": "vibe",
+  "workspacePaths": [
+    "c:\\Users\\Admin\\.kiro\\Testing"
+  ],
+  "createdAt": "2026-07-03T15:10:18.063Z",
+  "lastModifiedAt": "2026-07-03T16:55:18.699Z",
+  "modelId": "claude-opus-4.8",
+  "autopilot": true,
+  "effortLevel": "high",
+  "semanticReviewEnabled": true,
+  "ftaEnabled": false,
+  "specPlanEnabled": false,
+  "specWorkflow": "quick",
+  "specSkipClarificationEnabled": true,
+  "description": "Carried out all 8 tasks from the previous session's approved plan. Built the Flask stock-signal dashboard end to end; 36 tests pass and the smoke test is green.",
+  "status": "idle"
+}

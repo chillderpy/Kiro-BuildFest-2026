@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0.0",
+  "dataModelVersion": 1,
+  "id": "sess_83a431ca-116f-4424-849d-a7f3ded7f434",
+  "title": "Hey, I want to build a little stock-signal dashboard for myself. Nothing fanc...",
+  "agentMode": "plan",
+  "workspacePaths": [
+    "c:\\Users\\Admin\\.kiro\\Testing"
+  ],
+  "createdAt": "2026-07-03T14:53:27.194Z",
+  "lastModifiedAt": "2026-07-03T15:07:59.596Z",
+  "modelId": "claude-opus-4.8",
+  "autopilot": true,
+  "semanticReviewEnabled": true,
+  "ftaEnabled": false,
+  "specPlanEnabled": false,
+  "specWorkflow": "quick",
+  "specSkipClarificationEnabled": true,
+  "status": "idle"
+}

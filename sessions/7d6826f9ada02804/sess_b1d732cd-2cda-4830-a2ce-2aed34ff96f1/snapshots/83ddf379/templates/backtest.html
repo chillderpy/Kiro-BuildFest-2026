@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if not has_data %}
+    <p class="warn">No price data available for {{ ticker }} right now (data
+    provider may be rate-limiting or offline). Try again shortly.</p>
+  {% else %}
+  <section class="current">
+    <h3>Current signal</h3>
+    <p>
+      <span class="badge badge-{{ current.label|lower }}">{{ current.label }}</span>
+      score {{ '%.1f'|format(current.score) if current.score is not none else '-' }}
+    </p>
+  </section>
+
+  <section class="backtest">
+    <h3>Simulated backtest</h3>
+    <p class="warn">Hypothetical, simulated results only - no trades were placed.
+    Past simulated performance does not predict future results.</p>
+    <table class="stats">
+      <tr><th>Starting cash</th><td>${{ '%.2f'|format(stats.initial_cash) }}</td></tr>
+      <tr><th>Final equity</th><td>${{ '%.2f'|format(stats.final_equity) }}</td></tr>
+      <tr><th>Strategy return</th><td>{{ '%.2f'|format(stats.total_return_pct) }}%</td></tr>
+      <tr><th>Buy &amp; hold return</th><td>{{ '%.2f'|format(stats.buy_and_hold_return_pct) }}%</td></tr>
+      <tr><th>Signals generated</th><td>{{ stats.num_signals }}</td></tr>
+      <tr><th>Completed trades</th><td>{{ stats.num_trades }}</td></tr>
+      <tr><th>Winning trades</th><td>{{ stats.num_winning_trades }}</td></tr>
+      <tr><th>Win rate</th><td>{{ '%.1f'|format(stats.win_rate_pct) }}%</td></tr>
+      <tr><th>Open position at end</th><td>{{ 'yes' if stats.open_position else 'no' }}</td></tr>
+    </table>
+  </section>
+  {% endif %}
+
+  <p><a href="{{ url_for('index') }}">&larr; Back to quick list</a></p>
+{% endblock %}
