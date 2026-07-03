@@ -1,0 +1,385 @@
+/* ==========================================================================
+   Stock Signal Dashboard - dark "trading desk" theme
+   All colors are CSS variables so the palette stays consistent.
+   ========================================================================== */
+:root {
+  /* Surfaces */
+  --bg: #0b0e14;
+  --bg-elev: #10151f;
+  --panel: #151c28;
+  --panel-2: #1a2333;
+  --border: #232d40;
+  --border-soft: #1b2431;
+
+  /* Text */
+  --text: #e7ebf3;
+  --muted: #8b97ab;
+  --muted-2: #5e6a7e;
+
+  /* Brand / accent */
+  --accent: #3b82f6;
+  --accent-2: #60a5fa;
+
+  /* Signals: green buy, red sell, yellow hold */
+  --buy: #16c784;
+  --buy-bg: rgba(22, 199, 132, 0.14);
+  --sell: #ea3943;
+  --sell-bg: rgba(234, 57, 67, 0.14);
+  --hold: #f5a623;
+  --hold-bg: rgba(245, 166, 35, 0.14);
+  --na: #6b7686;
+  --na-bg: rgba(107, 118, 134, 0.14);
+
+  /* Effects */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --mono: "SF Mono", "JetBrains Mono", "Consolas", ui-monospace, monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(59, 130, 246, 0.08), transparent 60%),
+    var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { margin: 0; font-weight: 650; letter-spacing: -0.01em; }
+.muted { color: var(--muted); font-weight: 400; }
+
+/* ------------------------------------------------------------------ header */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1.5rem;
+  background: rgba(16, 21, 31, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.brand { display: flex; align-items: center; gap: 0.65rem; }
+.brand h1 { font-size: 1.15rem; }
+.logo-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--buy);
+  box-shadow: 0 0 0 4px var(--buy-bg), 0 0 12px var(--buy);
+}
+.topbar-actions { display: flex; align-items: center; gap: 1rem; }
+.last-updated { color: var(--muted); font-size: 0.82rem; }
+.last-updated time { color: var(--text); font-family: var(--mono); }
+
+/* buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.9rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.05s;
+}
+.btn:hover { background: #24304a; border-color: #33415c; }
+.btn:active { transform: translateY(1px); }
+.btn.ghost { background: transparent; border-color: transparent; font-size: 1.1rem; padding: 0.25rem 0.5rem; }
+.btn.ghost:hover { background: var(--panel-2); }
+.btn-icon { font-size: 1rem; line-height: 1; }
+
+/* -------------------------------------------------------------------- tabs */
+.tabs {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.75rem 1.5rem 0;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border-soft);
+}
+.tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  padding: 0.55rem 0.85rem;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+}
+.tab:hover { color: var(--text); }
+.tab.active { color: var(--text); border-bottom-color: var(--accent); }
+
+/* -------------------------------------------------------------------- main */
+main { max-width: 1180px; margin: 0 auto; padding: 1.5rem; }
+.status { color: var(--muted); font-size: 0.85rem; min-height: 1.2rem; }
+.err { color: var(--sell); font-size: 0.85rem; }
+
+/* toolbar + signal filters */
+.toolbar { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+.filters { display: inline-flex; gap: 2px; padding: 3px; background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.filter-btn {
+  background: none; border: none; color: var(--muted);
+  padding: 0.4rem 0.9rem; border-radius: 6px;
+  font-size: 0.82rem; cursor: pointer; transition: background 0.15s, color 0.15s;
+}
+.filter-btn:hover { color: var(--text); }
+.filter-btn.active { background: var(--panel-2); color: var(--text); }
+.filter-btn.active[data-filter="BUY"] { background: var(--buy-bg); color: var(--buy); }
+.filter-btn.active[data-filter="HOLD"] { background: var(--hold-bg); color: var(--hold); }
+.filter-btn.active[data-filter="SELL"] { background: var(--sell-bg); color: var(--sell); }
+
+/* Plotly chart containers - height is set by Plotly's layout, not fixed here,
+   so the container wraps the plot exactly and leaves no empty space. */
+.plot { width: 100%; }
+.equity-plot { margin-top: 0.8rem; }
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.6rem; }
+.panel-head h3 { margin-bottom: 0; }
+
+/* --------------------------------------------------------------- card grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+.card {
+  position: relative;
+  background: linear-gradient(180deg, var(--panel), var(--bg-elev));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  cursor: pointer;
+  transition: transform 0.12s, border-color 0.15s, box-shadow 0.15s;
+  overflow: hidden;
+}
+.card::before {
+  content: "";
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--sig, var(--na));
+}
+.card:hover { transform: translateY(-3px); border-color: #34415d; box-shadow: var(--shadow-hover); }
+.card.selected { border-color: var(--accent); }
+
+.card-top { display: flex; align-items: baseline; justify-content: space-between; }
+.card-ticker { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.01em; }
+.card-sector { font-size: 0.72rem; color: var(--muted); text-transform: capitalize; }
+.card-mid { display: flex; align-items: center; justify-content: space-between; margin: 0.9rem 0 0.6rem; }
+.card-score { font-family: var(--mono); font-size: 1.7rem; font-weight: 700; }
+.card-price { text-align: right; }
+.card-price .lbl { display: block; font-size: 0.68rem; color: var(--muted); }
+.card-price .val { font-family: var(--mono); font-size: 0.95rem; }
+
+/* confidence meter */
+.meter { height: 5px; background: var(--panel-2); border-radius: 99px; overflow: hidden; }
+.meter > span { display: block; height: 100%; background: var(--sig, var(--accent)); border-radius: 99px; }
+.card-conf { font-size: 0.7rem; color: var(--muted); margin-top: 0.35rem; }
+
+/* ----------------------------------------------------------------- badges */
+.badge {
+  display: inline-flex; align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 99px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--na); background: var(--na-bg);
+}
+.badge-buy { color: var(--buy); background: var(--buy-bg); }
+.badge-sell { color: var(--sell); background: var(--sell-bg); }
+.badge-hold { color: var(--hold); background: var(--hold-bg); }
+.badge-na { color: var(--na); background: var(--na-bg); }
+
+/* score text coloring */
+.pos { color: var(--buy); }
+.neg { color: var(--sell); }
+.flat { color: var(--muted); }
+
+/* ------------------------------------------------------------------ detail */
+.detail {
+  margin-top: 1.75rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.detail-head {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1.1rem 1.3rem;
+  border-bottom: 1px solid var(--border-soft);
+  background: linear-gradient(180deg, var(--panel-2), transparent);
+}
+.detail-id h2 { font-size: 1.5rem; font-family: var(--mono); }
+.detail-signal { display: flex; align-items: center; gap: 0.7rem; margin-left: auto; }
+.detail-score { font-family: var(--mono); font-size: 1.25rem; font-weight: 700; }
+
+/* timeframe switcher (segmented control) */
+.timeframe {
+  display: inline-flex;
+  gap: 2px;
+  margin: 1rem 1.3rem 0;
+  padding: 3px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.tf-btn {
+  background: none; border: none; color: var(--muted);
+  padding: 0.35rem 0.8rem; border-radius: 6px;
+  font-size: 0.8rem; font-family: var(--mono); cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.tf-btn:hover { color: var(--text); }
+.tf-btn.active { background: var(--accent); color: #fff; }
+
+.detail-grid {
+  display: grid;
+  /* Even columns now that the chart spans the full width on its own row. */
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1.2rem 1.3rem 1.4rem;
+}
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.1rem;
+}
+.panel h3 { font-size: 0.95rem; margin-bottom: 0.6rem; }
+.panel-hint { font-size: 0.75rem; color: var(--muted); margin: -0.3rem 0 0.6rem; }
+/* FIX: chart spans the full width on its own row instead of spanning two rows
+   to match the right column - that stretch was the source of the big empty
+   gap under the chart. */
+.chart-panel { grid-column: 1 / -1; }
+.chart-wrap { position: relative; width: 100%; }
+.backtest-panel { grid-column: 1 / -1; }
+
+/* key/value + breakdown tables */
+table.kv { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+table.kv th { text-align: left; color: var(--muted); font-weight: 600; font-size: 0.75rem; padding-bottom: 0.4rem; }
+table.kv td { padding: 0.32rem 0; border-top: 1px solid var(--border-soft); font-variant-numeric: tabular-nums; }
+table.kv td:first-child { color: var(--muted); }
+table.kv td.num, table.kv th.num { text-align: right; font-family: var(--mono); }
+
+/* backtest results */
+.bt-summary { display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; margin-bottom: 0.8rem; }
+.bt-metric { display: flex; flex-direction: column; }
+.bt-metric .lbl { font-size: 0.7rem; color: var(--muted); }
+.bt-metric .val { font-family: var(--mono); font-size: 1.05rem; font-weight: 650; }
+.bt-verdict { display: inline-flex; align-items: center; padding: 0.2rem 0.6rem; border-radius: 99px; font-size: 0.72rem; font-weight: 700; }
+.bt-verdict.win { color: var(--buy); background: var(--buy-bg); }
+.bt-verdict.lose { color: var(--sell); background: var(--sell-bg); }
+.bt-note { font-size: 0.75rem; color: var(--muted-2); margin-top: 0.6rem; font-style: italic; }
+.bt-message { color: var(--hold); font-size: 0.85rem; }
+
+/* ------------------------------------------------------------------ footer */
+.footer {
+  max-width: 1180px; margin: 1rem auto 2rem;
+  padding: 1rem 1.5rem;
+  color: var(--muted-2);
+  font-size: 0.78rem;
+  border-top: 1px solid var(--border-soft);
+}
+
+/* responsive */
+@media (max-width: 820px) {
+  .detail-grid { grid-template-columns: 1fr; }
+}
+
+/* ------------------------------------------------------------- research tab */
+.tab-research { color: var(--accent-2); }
+.tab-research.active { border-bottom-color: var(--accent-2); }
+
+.research-banner {
+  background: linear-gradient(90deg, rgba(59,130,246,0.14), rgba(59,130,246,0.04));
+  border: 1px solid #2b3b57;
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1rem;
+  font-size: 0.85rem;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+.research-banner strong { color: var(--accent-2); }
+
+.research-overview { margin-bottom: 1.5rem; }
+.research-q { font-size: 0.95rem; }
+.research-sources { font-size: 0.78rem; margin-top: 0.5rem; }
+
+.research-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+.rstat {
+  background: linear-gradient(180deg, var(--panel), var(--bg-elev));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.rstat-val { font-family: var(--mono); font-size: 1.5rem; font-weight: 700; color: var(--accent-2); }
+.rstat-lbl { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; }
+
+.research-section-title { margin: 1.5rem 0 0.75rem; }
+
+.research-card { display: flex; flex-direction: column; cursor: default; }
+.research-card:hover { transform: none; box-shadow: var(--shadow); }
+.research-returns {
+  display: flex; justify-content: space-between;
+  margin: 0.8rem 0;
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+}
+.research-returns .lbl { display: block; font-size: 0.66rem; color: var(--muted); text-transform: uppercase; }
+.research-returns .val { font-family: var(--mono); font-size: 1.05rem; font-weight: 650; }
+.research-kv td { font-size: 0.8rem; padding: 0.25rem 0; }
+.research-kv td.num { font-size: 0.78rem; }
+.research-highlights {
+  margin: 0.7rem 0 1rem;
+  padding-left: 1.1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.research-highlights li { margin-bottom: 0.3rem; }
+.research-highlights strong { color: var(--text); }
+.live-jump { margin-top: auto; align-self: flex-start; }
+
+.research-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+@media (max-width: 820px) { .research-two-col { grid-template-columns: 1fr; } }
+
+ul.rules { list-style: none; padding: 0; margin: 0; }
+ul.rules li { padding: 0.4rem 0; border-bottom: 1px solid var(--border-soft); font-size: 0.88rem; }
+ul.rules li:last-child { border-bottom: none; }
+ul.rules .badge { margin-right: 0.5rem; }
+
+.takeaway { margin-bottom: 0.9rem; }
+.takeaway h4 { font-size: 0.9rem; margin-bottom: 0.2rem; }
+.takeaway p { font-size: 0.83rem; margin: 0; }
+
+table.limitations td { vertical-align: top; font-size: 0.82rem; padding: 0.5rem 0.6rem 0.5rem 0; }
+table.limitations .lim-name { color: var(--sell); font-weight: 600; white-space: nowrap; }

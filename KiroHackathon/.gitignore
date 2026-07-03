@@ -1,0 +1,15 @@
+# Virtual environment
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# On-disk cache (market data only, no secrets) - do not commit stale data
+cache/
+
+# Local scratch
+freeze.txt
