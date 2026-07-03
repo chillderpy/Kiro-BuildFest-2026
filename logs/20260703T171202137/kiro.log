@@ -18,3 +18,19 @@
 {"timestamp":"2026-07-03T17:12:02.407Z","level":"info","message":"[KiroAgent] v2 hooks loaded 0 Open Plugin hooks"}
 {"timestamp":"2026-07-03T17:12:02.408Z","level":"info","message":"fs.hooksReload.ok {\"system\":\"fs\",\"durationMs\":5}"}
 {"timestamp":"2026-07-03T17:12:02.413Z","level":"info","message":"[KiroAgent] _kiro/mcp/toggle: enabled=true"}
+{"timestamp":"2026-07-03T17:12:03.818Z","level":"info","message":"[RemoteToolsDiscovery] Discovered 1 Remote tools"}
+{"timestamp":"2026-07-03T17:12:04.320Z","level":"info","message":"[RemoteToolsDiscovery] Fetching available Remote tools"}
+{"timestamp":"2026-07-03T17:12:04.719Z","level":"info","message":"[KiroAgent] ACP session/load sessionId=sess_74c49c9d-10ac-415d-b06e-0cfac117e631"}
+{"timestamp":"2026-07-03T17:12:04.730Z","level":"info","message":"[SessionPersistence] Loaded session sess_74c49c9d-10ac-415d-b06e-0cfac117e631 (0 messages) from C:\\Users\\Admin\\.kiro\\sessions\\afa1c5bf145b9f1b\\sess_74c49c9d-10ac-415d-b06e-0cfac117e631"}
+{"timestamp":"2026-07-03T17:12:04.742Z","level":"info","message":"fs.loadAgentProfiles.ok {\"system\":\"fs\",\"scope\":\"user\",\"durationMs\":1}"}
+{"timestamp":"2026-07-03T17:12:04.743Z","level":"info","message":"fs.loadAgentProfiles.ok {\"system\":\"fs\",\"scope\":\"workspace\",\"durationMs\":1}"}
+{"timestamp":"2026-07-03T17:12:05.151Z","level":"info","message":"policy.session.presets_seeded {\"sessionId\":\"sess_74c49c9d-10ac-415d-b06e-0cfac117e631\",\"presets\":[\"edit-workspace\"]}"}
+{"timestamp":"2026-07-03T17:12:05.153Z","level":"info","message":"[AdapterFactory] read=ACP, write=ACP, stat=ACP, readDir=ACP, delete=ACP, terminal=ACP"}
+{"timestamp":"2026-07-03T17:12:05.153Z","level":"info","message":"[WorkspaceConnection] clientTools=3, hasClientIOTools=false, injectedFs=false, injectedTerminal=false"}
+{"timestamp":"2026-07-03T17:12:05.156Z","level":"info","message":"[ActivityLogPublisher] Publishing to https://runtime.us-east-1.kiro.dev"}
+{"timestamp":"2026-07-03T17:12:05.157Z","level":"info","message":"[GovernanceService] Resolved {\"enterprise\":false,\"provider\":\"Google\",\"profileArn\":\"arn:aws:codewhisperer:us-east-1:699475941385:profile/EHGA3GRVQMUK\",\"controlPlaneEndpoint\":\"(none)\",\"mcpDisabled\":false,\"mcpReason\":\"admin_disabled\",\"webToolsDisabled\":false,\"autonomousAgentsDisabled\":false,\"disabledReason\":\"(none)\",\"registryUrl\":\"(none)\",\"catalogSize\":0}"}
+{"timestamp":"2026-07-03T17:12:05.178Z","level":"info","message":"[KiroAgent] _kiro/mcp/toggle: enabled=true"}
+{"timestamp":"2026-07-03T17:12:05.198Z","level":"info","message":"[SessionPersistence] Loaded session sess_74c49c9d-10ac-415d-b06e-0cfac117e631 (0 messages) from C:\\Users\\Admin\\.kiro\\sessions\\afa1c5bf145b9f1b\\sess_74c49c9d-10ac-415d-b06e-0cfac117e631"}
+{"timestamp":"2026-07-03T17:12:05.351Z","level":"info","message":"[KiroAgent] ACP session/load complete sessionId=sess_74c49c9d-10ac-415d-b06e-0cfac117e631 messages=0 at=2026-07-03T17:12:05.351Z"}
+{"timestamp":"2026-07-03T17:12:05.748Z","level":"info","message":"[RemoteToolsDiscovery] Discovered 1 Remote tools"}
+{"timestamp":"2026-07-03T17:12:06.566Z","level":"info","message":"[ACPModelConfigProvider] Loaded 15 models"}
