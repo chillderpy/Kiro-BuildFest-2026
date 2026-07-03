@@ -1,6 +1,8 @@
 # config.py - settings for personal, research-only stock signal dashboard
 # NOTE: research/learning only. No trading, no broker integration.
 
+import os
+
 # --- Watchlist grouped by sector ---
 WATCHLIST = {
     "tech":           ["AAPL", "MSFT", "GOOGL", "META"],
@@ -83,7 +85,7 @@ BACKTEST_INITIAL_CASH = 10_000.0
 # between live calls, and longer cache TTLs so repeat refreshes serve from disk
 # instead of re-hitting Yahoo. Fundamentals barely move intraday, so their cache
 # is much longer than prices.
-CACHE_DIR = "cache"
+CACHE_DIR = "/tmp/cache" if os.environ.get("VERCEL") else "cache"
 REQUEST_DELAY_SECONDS = 5.0        # was 2.0 - slower but far less likely to be throttled
 PRICE_CACHE_TTL = 30 * 60          # was 15 min
 INFO_CACHE_TTL = 6 * 60 * 60       # was 60 min (fundamentals change slowly)

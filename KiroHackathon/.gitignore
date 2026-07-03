@@ -13,3 +13,4 @@ cache/
 
 # Local scratch
 freeze.txt
+.vercel
